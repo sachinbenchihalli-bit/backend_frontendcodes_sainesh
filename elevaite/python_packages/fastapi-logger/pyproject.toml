@@ -1,0 +1,28 @@
+[project]
+name = "elevaite-logger"
+version = "0.2.0"
+description = "Enhanced logging utility for FastAPI applications with AWS CloudWatch integration, OpenTelemetry support, and code annotation capabilities"
+readme = "README.md"
+requires-python = "==3.11.11"
+dependencies = [
+    "boto3",
+    "opentelemetry-api>=1.31.1",
+    "opentelemetry-instrumentation-logging>=0.52b1",
+    "opentelemetry-sdk>=1.31.1",
+    "opentelemetry-exporter-otlp>=1.31.1",
+    "opentelemetry-semantic-conventions>=0.49b0",
+]
+
+[project.optional-dependencies]
+test = [
+    "fastapi",
+    "uvicorn",
+    "httpx",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["fastapi_logger*"]

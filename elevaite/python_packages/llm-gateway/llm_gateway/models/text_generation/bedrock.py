@@ -1,0 +1,131 @@
+import json
+import logging
+import time
+from typing import Dict, Any, Optional
+import boto3
+from botocore.exceptions import ClientError
+
+
+from .core.base import BaseTextGenerationProvider
+from .core.interfaces import TextGenerationResponse
+
+
+class BedrockTextGenerationProvider(BaseTextGenerationProvider):
+    def __init__(
+        self, aws_access_key_id: str, aws_secret_access_key: str, region_name: str
+    ):
+        self.client = boto3.client(
+            "bedrock-runtime",
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            region_name=region_name,
+        )
+
+    def generate_text(
+        self,
+        model_name: Optional[str],
+        temperature: Optional[float],
+        max_tokens: Optional[int],
+        sys_msg: Optional[str],
+        prompt: Optional[str],
+        retries: Optional[int],
+        config: Optional[Dict[str, Any]],
+    ) -> TextGenerationResponse:
+        model_name = model_name or "anthropic.claude-instant-v1"
+        temperature = temperature if temperature is not None else 0.5
+        max_tokens = max_tokens if max_tokens is not None else 100
+        sys_msg = sys_msg or ""
+        prompt = prompt or ""
+        retries = retries if retries is not None else 5
+        config = config or {}
+
+        formatted_prompt = f"Human: {prompt}\n\nAssistant:{sys_msg}"
+
+        payload = {
+            "prompt": formatted_prompt,
+            "temperature": temperature,
+            "max_tokens_to_sample": max_tokens,
+        }
+
+        if any(keyword in model_name for keyword in ["meta", "llama"]):
+            model_name = self.get_inference_profile_for_model(model_name)
+            logging.info(f"Special handling for model: {model_name}")
+
+        for attempt in range(retries):
+            try:
+                start_time = time.time()
+                response = self.client.invoke_model(
+                    modelId=model_name,
+                    body=json.dumps(payload),
+                )
+                latency = time.time() - start_time
+
+                response_body_raw = response["body"].read().decode("utf-8")
+                logging.debug(f"Full response body: {response_body_raw}")
+                response_body = json.loads(response_body_raw)
+
+                if "completion" in response_body:
+                    completion_text = response_body["completion"].strip()
+
+                    # Attempt to retrieve token counts if available
+                    tokens_in = response_body.get("input_tokens", len(prompt.split()))
+                    tokens_out = response_body.get(
+                        "output_tokens", len(completion_text.split())
+                    )
+
+                    return TextGenerationResponse(
+                        text=completion_text,
+                        tokens_in=tokens_in,
+                        tokens_out=tokens_out,
+                        latency=latency,
+                    )
+
+                raise ValueError(
+                    "Invalid response structure: Missing 'completion' key."
+                )
+
+            except ClientError as e:
+                logging.warning(
+                    f"Attempt {attempt + 1}/{retries} failed due to ClientError: {e}. Retrying..."
+                )
+                if attempt == retries - 1:
+                    raise RuntimeError(
+                        f"Text generation failed after {retries} attempts: {e}"
+                    )
+                time.sleep((2**attempt) * 0.5)
+
+            except ValueError as ve:
+                logging.error(f"ValueError encountered: {ve}")
+                raise ve
+        raise Exception
+
+    def get_inference_profile_for_model(self, model_name: str) -> str:
+        """
+        Retrieves the appropriate inference profile for a model containing 'meta' or 'llama'.
+        """
+        # We map the model names to their supported inferences profile.
+        inference_profiles = {  # FIXME add the correct inference id
+            "meta.llama3-3-70b-instruct-v1:0": "arn:aws:bedrock:region:account-id:inference-profile/inference-profile-id",
+        }
+
+        if model_name in inference_profiles:
+            return inference_profiles[model_name]
+
+        # Default behavior if no special case is found
+        return model_name
+
+    def validate_config(self, config: Dict[str, Any]) -> bool:
+        try:
+            assert isinstance(config, dict), "Config must be a dictionary."
+            assert "model" in config, "Model ID is required in the config."
+            assert isinstance(config.get("model"), str), "Model ID must be a string."
+            assert isinstance(
+                config.get("temperature", 0.7), (float, int)
+            ), "Temperature must be a number."
+            assert isinstance(
+                config.get("max_tokens", 256), int
+            ), "Max tokens must be an integer."
+            return True
+        except AssertionError as e:
+            logging.error(f"Amazon Bedrock Provider Validation Failed: {e}")
+            return False

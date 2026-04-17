@@ -1,0 +1,29 @@
+{
+   "payload_field_type_validation_error": {
+      "summary": "Field-Type payload validation error - project_id does not have valid UUID format; name field missing; extra fields present",
+      "value": {
+         "detail": [
+            {
+            "loc": [
+               "string",
+               0
+            ],
+            "msg": "string",
+            "type": "string"
+            }
+         ]
+      }
+   },
+   "project_not_associated_to_account": {
+      "summary": "Project not associated to account",
+      "value": {
+         "detail": "Project - '789e4567-e89b-12d3-a456-426614174000' - is not associated to account_id - '789e4567-e89b-12d3-a456-426614174001'"
+      }
+   },
+   "payload_business_logic_validation_error": {
+      "summary": "Business-logic payload validation error",
+      "value": {
+         "detail": "At least one field must be provided in payload"
+      }
+   }
+}

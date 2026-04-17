@@ -1,0 +1,8 @@
+{
+   "not_found": {
+       "summary": "organization not found",
+       "value": {
+           "detail": "Organization not found"
+       }
+   }
+}

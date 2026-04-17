@@ -1,0 +1,41 @@
+from dotenv import load_dotenv
+from rbac_lib.utils.deps import get_db
+
+load_dotenv()
+
+import logging
+from fastapi import FastAPI, Depends
+from .routes.main import attach_routes
+import uvicorn
+from elevaitelib.orm.db.database import engine
+from elevaitelib.orm.db import models
+
+from rbac_lib.utils.seed_db import seed_db as seed
+from rbac_lib.utils.check_env_vars import check_env_vars
+from sqlalchemy.orm import Session
+
+app = FastAPI()
+# models.Base.metadata.create_all(bind=engine)
+
+# Check mandatory env vars presence
+check_env_vars()
+
+# Attach all routes to the app
+attach_routes(app)
+
+
+@app.get("/hc", tags=["testing"])
+def healthCheck():
+    return {"msg": "Hello World"}
+
+
+# @app.post("/seed", tags=["testing"])
+# def seed_db(db: Session = Depends(get_db)):
+#     load_dotenv()
+#     seed(db)
+#     return {"msg": "DB seeded"}
+
+# This block is only necessary if you want to run the server with `python main.py`
+# In production, you should use Uvicorn or Gunicorn with Uvicorn workers from the command lineif __name__ == "__main__":
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=9005)

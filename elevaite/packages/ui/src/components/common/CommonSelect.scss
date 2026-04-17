@@ -1,0 +1,135 @@
+
+
+
+.common-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    position: relative;
+
+    &.advanced .common-select-options-container {
+        max-width: 100%;
+    }
+
+    &.common-style {
+        font-size: 14px;
+        background-color: var(--ev-colors-background);
+        border-radius: 8px;
+
+        &.disabled {
+            opacity: 0.75;
+        }
+
+        & .common-button {
+            padding: 10px 15px;
+            flex-grow: 1;
+            & > svg {
+                color: var(--ev-colors-highlight);
+            }
+        }
+        & .common-select-options-contents {
+            max-height: 300px;
+            gap: 0;
+
+            & > button {
+                padding: 2px 5px;
+                &:hover { color: var(--ev-colors-highlight); }
+            }
+        }
+    }
+
+    & .common-select-display {
+        justify-content: space-between;
+
+        & > svg {
+            flex-shrink: 0;
+        }
+
+        & .spinner {
+            height: 16px;
+            width: 16px;
+            color: var(--ev-colors-text);
+        }
+    }
+
+    & .common-select-options-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 50;
+        min-width: 100%;
+        width: max-content;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 150ms ease-in-out;
+
+        &.anchor-right {
+            left: unset;
+            right: 0;
+        }
+
+        &.open {
+            grid-template-rows: 1fr;
+        }
+
+
+        & .common-select-options-accordion {
+            overflow: hidden;
+        }
+
+        & .common-select-options-contents {
+            margin: 0 5px 5px;
+            background-color: var(--ev-colors-primary);
+            border: 1px solid var(--ev-colors-borderColor);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            padding: 0.5em;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+
+
+            // These don't do anything unless max-height is applied
+            overflow: auto;
+            @include scrollbar();
+
+            & .empty-list {
+                color: var(--ev-colors-secondaryText);
+                text-align: center;
+            }
+
+            & .common-select-option {
+                
+                & > svg { flex-shrink: 0; }
+            }
+
+            & .select-separator-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 10px;
+                color: var(--ev-colors-secondaryText);
+                
+                & .select-separator {
+                    flex-grow: 1;
+                    border-bottom: 1px solid var(--ev-colors-borderColor);
+                    &.start {
+                        flex-grow: 0;
+                        width: 20px;
+                    }
+                }
+            }
+
+
+            & .common-select-add-option {
+                margin: 0 -8px -8px;
+                border-radius: 0 0 4px 4px;
+                justify-content: center;
+            }
+        }
+    }
+
+}

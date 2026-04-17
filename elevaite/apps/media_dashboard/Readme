@@ -1,0 +1,34 @@
+Parts Analysis Tab:
+
+Focus on the exact part numbers from your data (e.g., 3AC02068100, 3AC00576600)
+Add metrics showing part replacement frequency and costs
+Create visualizations of part reliability by machine type
+Add customer-specific part usage analysis
+
+
+Overview Tab:
+
+Update metrics to reflect actual service request data
+Remove any placeholder metrics not based on real data
+Add trend analysis based on actual resolution times
+
+
+Root Cause Tab:
+
+Focus on categorizing issues based on the SR Customer Problem Summary
+Analyze patterns in equipment failures using SR Machine Type and Model
+Create visualizations showing common problems by customer or location
+
+
+Engineers Tab:
+
+Use actual technician names and IDs from your data
+Create performance metrics based on resolution times and travel times
+Add geographic analysis based on service locations
+
+
+Customer Tab:
+
+Focus on the actual customers in your data
+Create metrics showing service request volumes by customer
+Analyze SLA compliance rates by customer

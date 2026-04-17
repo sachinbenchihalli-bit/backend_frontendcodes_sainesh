@@ -1,0 +1,127 @@
+
+
+@mixin buttonClick($backgroundColor: null, $hoverFocus: false, $transparent: false) {
+  filter: brightness(1);
+  @if $transparent {
+    background-color: transparent;
+  }
+  transition:
+    filter 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    @if $transparent {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    @if $backgroundColor {
+      background-color: $backgroundColor;
+    } @else {
+      filter: brightness(0.9);
+    }
+  }
+
+  &:active:not(:disabled) {
+    @if $backgroundColor {
+      background-color: $backgroundColor;
+    }
+    @if $transparent {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    filter: brightness(0.75);
+    transition: unset;
+  }
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+    @if $hoverFocus {
+      @if $backgroundColor {
+        background-color: $backgroundColor;
+      } @else {
+        filter: brightness(0.9);
+      }
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+
+
+@mixin scrollbar($track: var(--ev-colors-background), $bar: var(--ev-colors-secondary), $radius: 5px) {
+  // Firefox
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-width: thin;
+  }
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    cursor: pointer;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $track;
+    border-radius: $radius;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $bar;
+    border-radius: $radius;
+  }
+}
+
+
+
+@mixin skeleton($backgroundColor: var(--ev-colors-primary), $width: 100%, $height: 1.5em) {
+  height: $height;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    width: $width;
+    background-color: $backgroundColor;
+    border-radius: 8px;
+  }
+}
+
+
+// Animations
+
+@mixin rotate() {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+// Specific Cases
+
+
+@mixin gridTemplateColumnsCount($minSize: 250px, $maxSize: 1fr) {
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(1, minmax($minSize, $maxSize));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, minmax($minSize, $maxSize));
+  }
+
+  @media (min-width: 1536px) {
+    grid-template-columns: repeat(3, minmax($minSize, $maxSize));
+  }
+
+  @media (min-width: 2000px) {
+    grid-template-columns: repeat(4, minmax($minSize, $maxSize));
+  }
+}

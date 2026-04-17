@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "auth-api"
+version = "0.1.0"
+description = "FastAPI-based native authentication API"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.68.0",
+    "uvicorn>=0.15.0",
+    "pydantic>=1.10.5",
+    "sqlalchemy>=1.4.23",
+    "alembic>=1.7.4",
+    "passlib>=1.7.4",
+    "python-jose>=3.3.0",
+    "python-multipart>=0.0.5",
+    "bcrypt>=3.2.0",
+    "asyncpg>=0.27.0",
+    "databases>=0.5.3",
+    "httpx>=0.23.0",
+    "argon2-cffi>=21.3.0",
+    "pydantic-settings",       
+    "pyotp>=2.8.0",            
+    "qrcode>=7.3.1",           
+    "slowapi>=0.1.7",
+    "aiosmtplib>=2.0.0",
+    "email-validator>=2.0.0",
+    "PyJWT>=2.6.0",
+    "sendgrid>=6.12.0",
+    "boto3>=1.26.0",           
+    "botocore>=1.29.0",       
+    "aioboto3>=11.0.0",        
+    "db-core",
+    "elevaite-logger",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.18.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.1.0",
+    "isort>=5.10.1",
+    "mypy>=0.931",
+    "ruff>=0.0.254",
+]
+
+[tool.uv.sources]
+db-core = { workspace = true }
+elevaite-logger = { workspace = true }
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.hatch.build.targets.sdist]
+include = ["app", "migrations", "README.md", "pyproject.toml"]

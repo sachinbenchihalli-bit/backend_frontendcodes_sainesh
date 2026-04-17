@@ -1,0 +1,290 @@
+// Targeting Config Selector - Card-based design matching the image
+.targeting-config-selector {
+  // Force full width when inside grid containers
+  grid-column: 1 / -1;
+  width: 100%;
+
+  // Header with title and Add New button
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ev-colors-text);
+    margin: 0;
+  }
+
+  &__add-button {
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--ev-colors-highlight);
+    border: 2px dotted var(--ev-colors-highlight);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.875rem;
+
+    &:hover {
+      transform: translateY(-1px);
+      background: var(--ev-colors-highlight);
+      color: var(--ev-colors-primary);
+      border-style: solid;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Subheader
+  &__subheader {
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ev-colors-text);
+      margin: 0;
+      opacity: 0.8;
+    }
+  }
+
+  // Loading, error, and empty states
+  &__loading,
+  &__error,
+  &__empty {
+    padding: 32px;
+    text-align: center;
+    background-color: var(--ev-colors-backgroundSecondary);
+    border: 1px solid var(--ev-colors-borderColor);
+    border-radius: 8px;
+    color: var(--ev-colors-text);
+
+    p {
+      margin: 0 0 16px 0;
+      opacity: 0.7;
+    }
+
+    button {
+      background-color: var(--ev-colors-highlight);
+      color: var(--ev-colors-primary);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: var(--ev-colors-uiHighlight);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  &__error {
+    border-color: var(--ev-colors-danger);
+
+    p {
+      color: var(--ev-colors-danger);
+    }
+  }
+
+  // Cards Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 24px;
+    }
+
+    @media (min-width: 1600px) {
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+  }
+}
+
+// Individual targeting configuration cards
+.targeting-config-card {
+  background: var(--ev-colors-primary);
+  border: 1px solid var(--ev-colors-borderColor);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover {
+    border-color: var(--ev-colors-highlight);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &--selected {
+    border-color: var(--ev-colors-highlight);
+    background-color: var(--ev-colors-backgroundSecondary);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  }
+
+  // Card Header
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  &__title-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1;
+  }
+
+  &__radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--ev-colors-borderColor);
+    border-radius: 50%;
+    background: var(--ev-colors-primary);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    transition: all 0.2s ease;
+    // flex-shrink: 0;
+    // margin-top: 2px;
+    position: relative;
+
+    &--checked {
+      border-color: var(--ev-colors-highlight);
+
+      &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--ev-colors-highlight);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &:hover {
+      border-color: var(--ev-colors-highlight);
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ev-colors-text);
+    margin: 0;
+    flex: 1;
+  }
+
+  &__edit-btn {
+    background: none;
+    border: none;
+    color: var(--ev-colors-text);
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+      background-color: var(--ev-colors-backgroundSecondary);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Description
+  &__description {
+    font-size: 0.875rem;
+    color: var(--ev-colors-text);
+    opacity: 0.7;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+  }
+
+  // Targeting Details
+  &__details {
+    margin-bottom: 12px;
+  }
+
+  &__detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    font-weight: 500;
+    color: var(--ev-colors-text);
+    opacity: 0.8;
+  }
+
+  &__value {
+    color: var(--ev-colors-text);
+    font-weight: 500;
+  }
+
+  // Tags
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  &__tag {
+    background-color: var(--ev-colors-backgroundSecondary);
+    color: var(--ev-colors-text);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--ev-colors-borderColor);
+
+    &--more {
+      background-color: var(--ev-colors-highlight);
+      color: var(--ev-colors-primary);
+      border-color: var(--ev-colors-highlight);
+    }
+  }
+}

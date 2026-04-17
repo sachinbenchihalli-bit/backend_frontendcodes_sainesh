@@ -1,0 +1,16 @@
+
+
+
+.widget-docker-container {
+    height: 100%;
+    overflow-y: scroll;
+    @include scrollbar();
+    padding-right: 5px;
+
+
+    & .widget-docker-contents {            
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

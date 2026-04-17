@@ -1,0 +1,19 @@
+.chatbot-layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    /* Allow scrolling when content exceeds viewport */
+    overflow: auto;
+
+    .main-content {
+        margin-left: 60px; /* Account for sidebar width */
+        margin-top: var(--navbar-height, 52px); /* Account for navbar height */
+        width: calc(100vw - 60px); /* Prevent overflow */
+        /* Let this region scroll independently as needed */
+        min-height: calc(100vh - var(--navbar-height, 52px));
+        overflow-y: auto;
+        box-sizing: border-box;
+        background-color: #F8FAFC; /* Match the page background */
+    }
+}

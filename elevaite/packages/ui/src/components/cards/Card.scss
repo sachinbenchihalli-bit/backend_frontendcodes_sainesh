@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=Inter&display=swap");
+
+
+
+
+.card-container {
+  max-width: 500px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 12px;
+  cursor: default;
+
+  background-color: var(--ev-colors-primary);
+  border: 1px solid var(--ev-colors-specialCardBorder);
+  border-top-color: var(--ev-colors-specialCardBorderTop);
+
+  &.with-link {
+    cursor: pointer;
+  }
+  &:focus-within {
+    border-color: var(--ev-colors-highlight);
+    box-shadow: 0 0 0 1px var(--ev-colors-highlight);
+  }
+
+
+  & .card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 150px;
+
+    & .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & .card-header-title {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-width: 0;
+
+        & .card-header-icon {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+
+          & > svg {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        & .card-header-label {
+          color: var(--ev-colors-text);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+
+      & .card-header-subtitle {
+        padding: 4px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 80px;
+        font-size: 12px;
+        color: var(--ev-colors-highlight);
+        background: var(--ev-colors-tertiary);
+        flex-shrink: 0;
+      }
+    }
+
+    & .card-description {
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--ev-colors-tertiaryText);
+      font-size: 14px;
+    }
+
+    & .card-misc-label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 20px;
+      color: var(--ev-colors-text);
+    }
+
+    & .card-button-container {
+      display: flex;
+      justify-content: flex-end;
+
+      & .card-button {
+        padding: 5px 20px;
+        border: 1px solid var(--ev-colors-specialCardButtonBorder);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ev-colors-text);
+        background-color: var(--ev-colors-specialCardButtonBackground);
+      }
+    }
+  }
+}
+
+

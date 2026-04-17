@@ -1,0 +1,118 @@
+
+
+.models-details-view-container {
+    overflow: hidden;
+
+
+    & .models-details-view-contents {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+
+        background-color: var(--ev-colors-backgroundHighContrast);
+        border-radius: 8px;
+
+        & .tabs-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--ev-colors-borderColor);
+    
+            & > button.tab-button {
+                margin-bottom: -1px;
+                padding: 20px;
+                border-bottom: 2px solid transparent;
+                border-radius: 0;
+                font-size: 14px;
+                font-weight: 500;
+                text-transform: uppercase;
+                color: var(--ev-colors-secondaryText);
+    
+                &.active {
+                    color: var(--ev-colors-highlight);
+                    border-bottom-color: var(--ev-colors-highlight);
+                }
+                &.hidden {
+                    display: none;
+                }
+            }
+        }
+
+
+        & .model-details-tab-contents {
+            height: 100%;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+
+            & .loading-message {
+                align-self: flex-start;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding: 30px 0 0 30px;
+                & > svg {
+                    height: 25px;
+                    width: 25px;
+                }
+            }
+
+            & .model-details-page-contents {
+                grid-column: 1;
+                grid-row: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                opacity: 0;
+                transition: opacity 200ms ease-in-out;
+
+                overflow-y: auto;
+                padding-right: 5px;
+                @include scrollbar();
+
+                &.visible {
+                    opacity: 1;
+                    z-index: 50;
+                }
+
+                &.general {
+                    gap: 20px;
+                }
+                &.parameters {
+                    flex-direction: row;
+
+                    & .model-column {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+}
+
+
+
+.model-bit {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 50px;
+    font-size: 14px;
+    color: var(--ev-colors-text);
+    text-transform: capitalize;
+
+    &.general {        
+        grid-template-columns: 1fr 3fr;
+    }
+
+    & .label {
+        color: var(--ev-colors-secondaryText);
+    }
+}

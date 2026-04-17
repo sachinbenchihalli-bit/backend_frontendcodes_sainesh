@@ -1,0 +1,85 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# next.js
+.next/
+out/
+build
+.swc/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# turbo
+.turbo
+
+# ui
+dist/
+
+middleware/deps
+middleware/__pycache__
+**/node_modules
+**/deps
+__pycache__/
+*.py[cod]
+.vscode
+**/dist
+**/storybook-static/
+out
+.idea
+
+#ignore the db files that popped up in the server somehow
+elevaite_db/*
+logfile
+
+# pytest coverage
+.coverage 
+htmlcov
+python_apps/media_backend/static/images
+python_apps/media_backend/venv
+**/tests/.env
+airflow_venv
+elevaite_backend/fastapi-logger/fastapi_logger.egg-info
+elevaite_backend/fastapi-logger/elevaite_logger.egg-info
+python_packages/fastapi-logger/fastapi_logger.egg-info
+python_packages/fastapi-logger/elevaite_logger.egg-info
+**/.venv
+python_apps/salesforce_connector/.env
+
+# Ignore the environment directories
+adopt_backend_env/etc/
+adopt_backend_env/Scripts/
+adopt_backend_env/share/
+# Ignore Python virtual environment file
+python_apps/adopt_backend/adopt_backend_env/pyvenv.cfg
+
+# Ignore specific data file
+python_apps/adopt_backend/uploads/Final_Synthetic_Data_August.csv
+backups/
+python_apps/adopt_backend/adopt_backend_env/
+python_apps/adopt_backend/uploads/Latest_Underperforming.csv
+python_apps/adopt_backend/uploads/Benchmarks.xlsx
+python_apps/adopt_backend/uploads/Mid-Performing.csv
+python_apps/adopt_backend/uploads/Overperforming.csv
+python_apps/adopt_backend/.env
+python_apps/media_backend/.env

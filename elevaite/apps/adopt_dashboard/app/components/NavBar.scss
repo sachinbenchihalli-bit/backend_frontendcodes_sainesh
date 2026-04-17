@@ -1,0 +1,58 @@
+.adopt-navbar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--navbar-height);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  color: #1f2937;
+  /* Remove the border-bottom to eliminate the stroke/divider line */
+
+  & .adopt-navbar-holder {
+    display: flex;
+    padding: 0 32px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & .adopt-navbar-left,
+  & .adopt-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #1f2937;
+  }
+  
+  & .adopt-navbar-left a {
+    height: 30px;
+    & > svg {
+      height: 100%;
+      width: auto;
+    }
+  }
+  
+  & .adopt-navbar-right {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+
+
+  & .icon-container {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+
+    & > svg {
+      height: 25px;
+      width: 25px;
+    }
+  }
+}

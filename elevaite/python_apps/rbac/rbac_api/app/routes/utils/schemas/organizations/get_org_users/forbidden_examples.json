@@ -1,0 +1,14 @@
+{
+   "insufficient_permissions_1": {
+      "summary": "logged-in user does not have superadmin privileges and must provide admin account filter to read organization users",
+      "value": {
+         "detail": "logged-in user - '789e4567-e89b-12d3-a456-426614174000' - does not have superadmin privileges and must provide admin account filter to read organization users"
+      }
+   },
+   "insufficient_permissions_2": {
+      "summary": "logged-in user does not have superadmin or account-admin privileges in account specified in filter to read organization users",
+      "value": {
+         "detail": "logged-in user - '789e4567-e89b-12d3-a456-426614174000' - does not have superadmin or account-admin privileges in account - '789e4567-e89b-12d3-a456-426614174001' - to read organization users"
+      }
+   }
+}

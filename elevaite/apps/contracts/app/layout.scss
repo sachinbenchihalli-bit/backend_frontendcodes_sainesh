@@ -1,0 +1,53 @@
+@import "../ui/globals.css";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 22, 22, 22;
+  --background-end-rgb: 22, 22, 22;
+  --welcome-header-height: 40px;
+  --layout-header-height: calc(
+    var(--navbar-height) + var(--welcome-header-height)
+  );
+  --layout-scroll-padding-top: calc(var(--layout-header-height) + 200px);
+  scroll-padding-top: var(--layout-scroll-padding-top);
+  min-height: 100vh;
+  color: white;
+}
+
+body {
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+
+
+
+.elevaite-main-container {
+    display: grid;
+    grid-template-rows: var(--navbar-height) 1fr;
+    grid-template-columns: 1fr;
+    position: relative;
+    height: 100vh;
+
+    & .sidebar-wrapper {
+        display: flex;
+        position: relative;
+    }
+
+
+    & .children-container {
+        grid-row: 2;
+        grid-column: 1;
+        overflow: hidden;
+        background-color: var(--ev-colors-background);
+
+        &>div {
+            min-height: 0;
+            height: 100%;
+        }
+    }
+}

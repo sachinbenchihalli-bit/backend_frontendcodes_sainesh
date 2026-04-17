@@ -1,0 +1,420 @@
+import type { CardProps } from "@repo/ui/components";
+import { ApplicationIcons } from "./public/icons/appIcons";
+import { type UserAccountMembershipObject } from "./app/lib/interfaces";
+
+const dummyDesc =
+  "Mauris in quam ut neque scelerisque ultrices at eget nisl. Praesent a risus in orci porttitor commodo. Aenean condimentum luctus consequat. Sed volutpat metus quis libero molestie";
+
+export const ingestionMethods: CardProps[] = [
+  {
+    icon: ApplicationIcons.workbench.slack.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.slack.alt,
+    title: "Slack Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "SlackIngest001",
+  },
+  {
+    icon: ApplicationIcons.workbench.oneDrive.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.oneDrive.alt,
+    title: "One Drive Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "OneDrive001",
+  },
+  {
+    icon: ApplicationIcons.workbench.mongoDB.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.mongoDB.alt,
+    title: "MongoDB Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "MongoDB001",
+  },
+  {
+    icon: ApplicationIcons.workbench.teams.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.teams.alt,
+    title: "Microsoft Teams Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "Teams-001",
+  },
+  {
+    icon: ApplicationIcons.workbench.slack.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.slack.alt,
+    title: "Slack Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "Slack-001",
+  },
+  {
+    icon: ApplicationIcons.workbench.oneDrive.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.oneDrive.alt,
+    title: "One Drive Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "OneDrive-002",
+  },
+  {
+    icon: ApplicationIcons.workbench.mongoDB.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.mongoDB.alt,
+    title: "MongoDB Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "MongoDB-002",
+  },
+  {
+    icon: ApplicationIcons.workbench.teams.src,
+    description: dummyDesc,
+    iconAlt: ApplicationIcons.workbench.teams.alt,
+    title: "Microsoft Teams Ingest",
+    subtitle: "By Elevaite",
+    btnLabel: "Open",
+    id: "Teams-002",
+  },
+];
+
+const appLinks: Record<string, { development: string; production: string; test: string }> = {
+  arloSupport: {
+    development: "https://elevaite-arlocb.iopex.ai",
+    production: "https://elevaite-arlocb.iopex.ai",
+    test: "",
+  },
+  logsSupport: {
+    development: "https://elevaite-logs.iopex.ai",
+    production: "https://elevaite-logs.iopex.ai",
+    test: "",
+  },
+  complianceSupport: {
+    development: "http://elevaite-vmcb-api.iopex.ai/",
+    production: "http://elevaite-vmcb-api.iopex.ai/",
+    test: "",
+  },
+  aleSupport: {
+    development: "https://elevaite-alcb.iopex.ai",
+    production: "https://elevaite-alcb.iopex.ai",
+    test: "",
+  },
+  supportBot: {
+    development: "http://localhost:3002",
+    production: "https://elevaite-cb.iopex.ai/",
+    test: "",
+  },
+  excletoppt: {
+    development: "http://localhost:3003/homepage",
+    production: "https://elevaite-test.iopex.ai/homepage",
+    test: "",
+  },
+  insights: {
+    development: "https://elevaite-assist.iopex.ai/",
+    production: "https://elevaite-assist.iopex.ai/",
+    test: "",
+  },
+  contracts: {
+    development: "/contracts",
+    production: "/contracts",
+    test: "",
+  },
+  contractsIopex: {
+    development: "/contracts-iopex",
+    production: "/contracts-iopex",
+    test: "",
+  },
+  mediaplan: {
+    development: "https://elevaite-ads.iopex.ai/",
+    production: "https://elevaite-ads.iopex.ai/",
+    test: "",
+  },
+  urlAssist: {
+    development: "https://elevaite-webassist.iopex.ai",
+    production: "https://elevaite-webassist.iopex.ai",
+    test: "",
+  },
+  insightsURL: {
+    development: "https://elevaite-xp.iopex.ai",
+    production: "https://elevaite-xp.iopex.ai",
+    test: "",
+  },
+  sentimentAnalysisURL: {
+    development: "https://elevaite-xp.iopex.ai",
+    production: "https://elevaite-xp.iopex.ai",
+    test: "",
+  },
+  qaViewURL: {
+    development: "https://elevaite-dev.iopex.ai",
+    production: "https://elevaite-dev.iopex.ai",
+    test: "",
+  },
+  mediaAnalytics: {
+    development: "https://elevaite-media-analytics.iopex.ai",
+    production: "https://elevaite-media-analytics.iopex.ai",
+    test: "",
+  }
+
+
+};
+
+export function getApplications(
+  env: "development" | "production" | "test", accountMemberships?: UserAccountMembershipObject[]
+): { title: string; key: string; cards: CardProps[] }[] {
+  if (accountMemberships) {
+    let isAlcatel = false
+    accountMemberships.forEach((membership) => {
+      if (membership.account_id === "ab5eed01-46f1-423d-9da0-093814a898fc") {
+        isAlcatel = true
+      }
+    })
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- No it's not
+    if (isAlcatel) return [
+      {
+        title: "elevAIte for Support",
+        key: "support",
+        cards: [
+          {
+            icon: ApplicationIcons.applications.aleSupport.src,
+            description: "Your guide for precise Networking and Communication Answers!",
+            iconAlt: ApplicationIcons.applications.aleSupport.alt,
+            title: "ALE - Tech Chat Support",
+            link: appLinks.aleSupport[env],
+            id: "aleSupport",
+            miscLabel: "Version 1.0",
+            subtitle: "By Elevaite",
+            openInNewTab: true,
+          },
+        ],
+      },
+    ];
+  }
+  return [
+    {
+      title: "elevAIte for Support",
+      key: "support",
+      cards: [
+        {
+          icon: ApplicationIcons.applications.supportBot.src,
+          description: "Please feel free to ask me anything. I'll do my best to provide helpful answers.",
+          iconAlt: ApplicationIcons.applications.supportBot.alt,
+          title: "Support Bot",
+          link: appLinks.supportBot[env],
+          id: "supportBot",
+          miscLabel: "Version 2.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.arloSupport.src,
+          description: "Your AI-powered Bot guiding you through setup, troubleshooting, and to answer your product related queries.",
+          iconAlt: ApplicationIcons.applications.arloSupport.alt,
+          title: "Arlo Support",
+          link: appLinks.arloSupport[env],
+          id: "arloSupport",
+          miscLabel: "Version 2.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.logsSupport.src,
+          description: "Your AI-powered Bot to guide you through the log analysis.",
+          iconAlt: ApplicationIcons.applications.logsSupport.alt,
+          title: "Logs Support",
+          link: appLinks.logsSupport[env],
+          id: "logsSupport",
+          miscLabel: "Version 2.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.complianceSupport.src,
+          description: "Your Partner in SLA Success - Help verify and resolve your vendor related queries.",
+          iconAlt: ApplicationIcons.applications.complianceSupport.alt,
+          title: "Compliance Support",
+          link: appLinks.complianceSupport[env],
+          id: "complianceSupport",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.aleSupport.src,
+          description: "Your guide for precise Networking and Communication Answers!",
+          iconAlt: ApplicationIcons.applications.aleSupport.alt,
+          title: "ALE - Tech Chat Support",
+          link: appLinks.aleSupport[env],
+          id: "aleSupport",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.urlAssist.src,
+          description: "Find what you need instantly with our AI Search Assistant. Enables seamless navigation with accurate answers.",
+          iconAlt: ApplicationIcons.applications.urlAssist.alt,
+          title: "Your Website Assistant",
+          link: appLinks.urlAssist[env],
+          id: "urlAssist",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+      ],
+    },
+    {
+      title: "elevAIte for Finance",
+      key: "finance",
+      cards: [
+        {
+          icon: ApplicationIcons.applications.deckBuilder.src,
+          description: "Convert your spreadsheets to presentations and ask questions",
+          iconAlt: ApplicationIcons.applications.deckBuilder.alt,
+          title: "Deck Builder",
+          link: appLinks.excletoppt[env],
+          id: "deckBuilder",
+          miscLabel: "Version 2.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.contracts.src,
+          description: "Quickly discover and evaluate important data in your contracts and invoices",
+          iconAlt: ApplicationIcons.applications.contracts.alt,
+          title: "Contract Co-Pilot",
+          link: appLinks.contracts[env],
+          id: "contracts",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: false,
+        },
+        {
+          icon: ApplicationIcons.applications.contractsIopex.src,
+          description: " Quickly discover and approve contracts, invoices and PO's",
+          iconAlt: ApplicationIcons.applications.contractsIopex.alt,
+          title: "Contract Co-Pilot (iOPEX)",
+          link: appLinks.contractsIopex[env],
+          id: "contractsIopex",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: false,
+        },
+      ],
+    },
+    {
+      title: "elevAIte for Revenue",
+      key: "revenue",
+      cards: [
+        {
+          icon: ApplicationIcons.applications.insights.src,
+          description: "Leverage AI-powered analytics to gain actionable insights on your campaigns and creatives to optimize performance.",
+          iconAlt: ApplicationIcons.applications.insights.alt,
+          title: "Campaign & Creative Insights",
+          link: appLinks.insights[env],
+          id: "insights",
+          miscLabel: "Version 2.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.campaignBuilder.src,
+          description: "Analyze creatives, generate tailored media plans, and unlock insights from your creative data.",
+          iconAlt: ApplicationIcons.applications.campaignBuilder.alt,
+          title: "Media and Marketing",
+          link: appLinks.mediaplan[env],
+          id: "mediaplan",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+        {
+          icon: ApplicationIcons.applications.analytics.src,
+          description: "Gain actionable insights and feedback analytics to monitor Media Plan Co-pilot effectiveness and drive performance optimization.",
+          iconAlt: ApplicationIcons.applications.analytics.alt,
+          title: "Media Analytics Dashboard",
+          link: appLinks.mediaAnalytics[env],
+          id: "mediaAnalytics",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+      ],
+    },
+  ];
+}
+
+export function getApplicationsDashboard(
+  env: "development" | "production" | "test", accountMemberships?: UserAccountMembershipObject[]
+): { title: string; key: string; cards: CardProps[] }[] {
+  if (accountMemberships) {
+    let isAlcatel = false
+    accountMemberships.forEach((membership) => {
+      if (membership.account_id === "ab5eed01-46f1-423d-9da0-093814a898fc") {
+        isAlcatel = true
+      }
+    })
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- No it's not
+    if (isAlcatel) return [
+      {
+        title: "elevAIte for Support",
+        key: "support",
+        cards: [
+          {
+            icon: ApplicationIcons.applications.aleSupport.src,
+            description: "Your guide for precise Networking and Communication Answers!",
+            iconAlt: ApplicationIcons.applications.aleSupport.alt,
+            title: "ALE - Tech Chat Support",
+            link: appLinks.aleSupport[env],
+            id: "aleSupport",
+            miscLabel: "Version 1.0",
+            subtitle: "By Elevaite",
+            openInNewTab: true,
+          },
+        ],
+      },
+    ];
+  }
+  return [
+    {
+      title: "Dashboards",
+      key: "support",
+      cards: [
+          {
+          icon: ApplicationIcons.applications.logsSupport.src,
+          description: "View key insights for your app.",
+          iconAlt: ApplicationIcons.applications.logsSupport.alt,
+          title: "Insights",
+          link: appLinks.insightsURL[env],
+          id: "Insights",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+          {
+          icon: ApplicationIcons.applications.complianceSupport.src,
+          description: "View key sentiment analysis for your app.",
+          iconAlt: ApplicationIcons.applications.logsSupport.alt,
+          title: "Sentiment Analysis",
+          link: appLinks.sentimentAnalysisURL[env],
+          id: "Sentiment Analysis",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+          {
+          icon: ApplicationIcons.applications.logsSupport.src,
+          description: "View and analyse chats for your app.",
+          iconAlt: ApplicationIcons.applications.logsSupport.alt,
+          title: "QA View",
+          link: appLinks.qaViewURL[env],
+          id: "QA View",
+          miscLabel: "Version 1.0",
+          subtitle: "By Elevaite",
+          openInNewTab: true,
+        },
+      ],
+    },
+  ];
+}

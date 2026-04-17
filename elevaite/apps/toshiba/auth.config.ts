@@ -1,0 +1,208 @@
+import type { NextAuthConfig } from "next-auth";
+import { stockConfig } from "@repo/lib";
+
+export const authConfig = {
+  session: { strategy: "jwt", maxAge: 3600 },
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    ...stockConfig.callbacks,
+    async session({ session, token, user }) {
+      const stockSession = stockConfig.callbacks?.session
+        ? await stockConfig.callbacks.session({
+            session,
+            token,
+            user,
+            newSession: undefined,
+          })
+        : session;
+
+      if (!stockSession.user) {
+        stockSession.user = {};
+      }
+
+      Object.assign(stockSession, { authToken: token.access_token });
+
+      if (token.needsPasswordReset !== undefined) {
+        stockSession.user.needsPasswordReset = token.needsPasswordReset;
+      }
+
+      if (token.is_superuser !== undefined) {
+        stockSession.user.is_superuser = token.is_superuser;
+      }
+
+      if (token.application_admin !== undefined) {
+        stockSession.user.application_admin = token.application_admin;
+      }
+
+      if (token.mfa_enabled !== undefined) {
+        stockSession.user.mfa_enabled = token.mfa_enabled;
+      }
+
+      if (token.sms_mfa_enabled !== undefined) {
+        stockSession.user.sms_mfa_enabled = token.sms_mfa_enabled;
+      }
+
+      if (token.phone_verified !== undefined) {
+        stockSession.user.phone_verified = token.phone_verified;
+      }
+
+      if (token.phone_number !== undefined) {
+        stockSession.user.phone_number = token.phone_number;
+      }
+
+      if (token.refresh_token) {
+        stockSession.user.refreshToken = token.refresh_token;
+      }
+
+      return stockSession;
+    },
+    // Override the JWT callback to include the needsPasswordReset property
+    async jwt({ token, user, account }) {
+      if (account) {
+        if (
+          !account.access_token &&
+          !account.refresh_token &&
+          !user.accessToken &&
+          !user.refreshToken
+        ) {
+          throw new Error("Account doesn't contain tokens");
+        }
+        if (
+          Boolean(account.access_token) &&
+          (account.access_token === token.access_token ||
+            user.accessToken === token.access_token) &&
+          Boolean(account.refresh_token) &&
+          (account.refresh_token === token.refresh_token ||
+            user.refreshToken === token.refresh_token) &&
+          Boolean(account.provider) &&
+          account.provider === token.provider
+        ) {
+          if (user?.needsPasswordReset !== undefined) {
+            token.needsPasswordReset = user.needsPasswordReset;
+          }
+          if (user?.is_superuser !== undefined) {
+            token.is_superuser = user.is_superuser;
+          }
+          if (user?.application_admin !== undefined) {
+            token.application_admin = user.application_admin;
+          }
+          if (user?.mfa_enabled !== undefined) {
+            token.mfa_enabled = user.mfa_enabled;
+          }
+          if (user?.sms_mfa_enabled !== undefined) {
+            token.sms_mfa_enabled = user.sms_mfa_enabled;
+          }
+          if (user?.phone_verified !== undefined) {
+            token.phone_verified = user.phone_verified;
+          }
+          if (user?.phone_number !== undefined) {
+            token.phone_number = user.phone_number;
+          }
+          return token;
+        }
+
+        if (account.provider === "credentials") {
+          const newToken = {
+            ...token,
+            access_token: user.accessToken,
+            expires_at: Math.floor(Date.now() / 1000 + 3600),
+            refresh_token: user.refreshToken,
+            provider: "credentials" as const,
+          };
+
+          if (user?.needsPasswordReset !== undefined) {
+            newToken.needsPasswordReset = user.needsPasswordReset;
+          }
+          if (user?.is_superuser !== undefined) {
+            newToken.is_superuser = user.is_superuser;
+          }
+          if (user?.application_admin !== undefined) {
+            newToken.application_admin = user.application_admin;
+          }
+          if (user?.mfa_enabled !== undefined) {
+            newToken.mfa_enabled = user.mfa_enabled;
+          }
+          if (user?.sms_mfa_enabled !== undefined) {
+            newToken.sms_mfa_enabled = user.sms_mfa_enabled;
+          }
+          if (user?.phone_verified !== undefined) {
+            newToken.phone_verified = user.phone_verified;
+          }
+          if (user?.phone_number !== undefined) {
+            newToken.phone_number = user.phone_number;
+          }
+
+          return newToken;
+        }
+      }
+
+      if (Date.now() < token.expires_at * 1000) {
+        return token;
+      }
+
+      try {
+        if (token.provider === "credentials") {
+          const authApiUrl = process.env.NEXT_PUBLIC_AUTH_API_URL;
+          if (!authApiUrl) {
+            throw new Error("NEXT_PUBLIC_AUTH_API_URL is not configured");
+          }
+
+          const apiUrl = authApiUrl.replace("localhost", "127.0.0.1");
+          const tenantId = process.env.NEXT_PUBLIC_AUTH_TENANT_ID ?? "default";
+
+          const response = await fetch(`${apiUrl}/api/auth/refresh`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Tenant-ID": tenantId,
+            },
+            body: JSON.stringify({
+              refresh_token: token.refresh_token,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              `Auth API token refresh failed: ${response.statusText}`
+            );
+          }
+
+          const tokensOrError = (await response.json()) as {
+            access_token: string;
+            refresh_token: string;
+            token_type: string;
+            password_change_required?: boolean;
+          };
+
+          const refreshedToken = {
+            ...token,
+            access_token: tokensOrError.access_token,
+            expires_at: Math.floor(Date.now() / 1000 + 3600),
+            refresh_token: tokensOrError.refresh_token,
+            provider: "credentials" as const,
+          };
+
+          // Preserve or update the needsPasswordReset flag from refresh response
+          if (tokensOrError.password_change_required !== undefined) {
+            refreshedToken.needsPasswordReset =
+              tokensOrError.password_change_required;
+          }
+
+          return refreshedToken;
+        }
+        throw new Error("Unknown provider");
+      } catch (error) {
+        // eslint-disable-next-line no-console -- Need this in case it fails
+        console.error("Error refreshing access_token", error);
+        token.error = "RefreshAccessTokenError";
+        return token;
+      }
+    },
+  },
+  providers: [], // Add providers with an empty array for now
+  trustHost: true,
+  secret: process.env.AUTH_SECRET,
+  jwt: { maxAge: 60 * 60 },
+} satisfies NextAuthConfig;

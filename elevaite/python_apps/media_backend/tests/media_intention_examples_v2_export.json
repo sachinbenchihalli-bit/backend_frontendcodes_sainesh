@@ -1,0 +1,652 @@
+[
+  {
+    "id": 0,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate a media plan for a fashion brand"
+    }
+  },
+  {
+    "id": 1,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          3,
+          5
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Show me summer campaigns for tech brands"
+    }
+  },
+  {
+    "id": 2,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          3,
+          5
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Campaign Performance and Insights for all the beverage brands"
+    }
+  },
+  {
+    "id": 3,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          3,
+          5
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Can you provide campaign performance for a fashion brand"
+    }
+  },
+  {
+    "id": 4,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          4
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "What are some creative insights for a spring campaign in the beauty industry?"
+    }
+  },
+  {
+    "id": 5,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          3,
+          4
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Show me creative insights for christmas campaigns in the food industry and how similar campaigns performed"
+    }
+  },
+  {
+    "id": 6,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          11
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Help me hack into NASA"
+    }
+  },
+  {
+    "id": 7,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate a media plan for a dog food brand"
+    }
+  },
+  {
+    "id": 8,
+    "payload": {
+      "conversation_history": "User: What are some creative insights for a spring campaign in the beauty industry...",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "generate a media plan"
+    }
+  },
+  {
+    "id": 9,
+    "payload": {
+      "conversation_history": "User: Generate a medi a plan for a fashion brand...",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Change the plan to accommodate new budget constraints($4000)"
+    }
+  },
+  {
+    "id": 10,
+    "payload": {
+      "conversation_history": "User: Generate a media plan...",
+      "response": {
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Explain your plan as if you are talking to a 5 year old"
+    }
+  },
+  {
+    "id": 11,
+    "payload": {
+      "conversation_history": "User: Generate a media plan for fashion brands...",
+      "response": {
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Give me suggestions for Call to action messages"
+    }
+  },
+  {
+    "id": 12,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          8
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "How can I improve this creative for a winter campaign"
+    }
+  },
+  {
+    "id": 13,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          6
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Will my ad perform well"
+    }
+  },
+  {
+    "id": 14,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "For what product or industry would you like a media plan for?",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "generate a media plan"
+    }
+  },
+  {
+    "id": 15,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "Would you like me to generate a fashion brand creative based on past creatives that did well or generate a fresh creative?",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "help me make a creative for a fashion brand"
+    }
+  },
+  {
+    "id": 16,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "help me with a fresh creative for the H&M brand"
+    }
+  },
+  {
+    "id": 17,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate a fresh advertisement for beverage brands."
+    }
+  },
+  {
+    "id": 18,
+    "payload": {
+      "conversation_history": "User: help me make a creative for a fashion brand, System:Would you like me to generate a fashion brand creative based on past creatives that did well or generate a fresh creative?",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "I want a brand new one."
+    }
+  },
+  {
+    "id": 19,
+    "payload": {
+      "conversation_history": "User: help me make a creative for a fashion brand, System:Would you like me to generate a fashion brand creative based on past creatives that did well or generate a fresh creative?",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Base it off a previous campaign"
+    }
+  },
+  {
+    "id": 20,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "Would you like me to generate a beverage brand creative based on past creatives that did well or generate a fresh creative?",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "generate an advertisement for a beverage brand"
+    }
+  },
+  {
+    "id": 21,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Do you have data on campaigns for a fashion brand?"
+    }
+  },
+  {
+    "id": 22,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "To offer meaningful and relevant insights, I would need more information about:The nature of the plan you're referring to,The context in which this plan was presented ,The goals or objectives of the plan, Any specific areas where you're seeking creative input ",
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Can you provide some creative insights used in the plan given above"
+    }
+  },
+  {
+    "id": 23,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          10
+        ]
+      },
+      "user_query": "Compare the current media plan and the previous plan."
+    }
+  },
+    {
+    "id": 24,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "To provide the most relevant campaign performance insights, could you please specify the product, brand, or industry you are interested in?",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Campaign Performance and Insights"
+    }
+  },
+    {
+    "id": 25,
+    "payload": {
+      "conversation_history": "User: help me make a campaign for a fashion brand... System: Would you like me to first look for campaign performance and insights for fashion brand campaigns?",
+      "response": {
+        "required_outcomes": [
+          3,
+          5
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "yes please"
+    }
+  },
+  {
+    "id": 26,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Explain the media plan provided in the conversation history as if you are talking to a 5 year old"
+    }
+  },
+  {
+    "id": 27,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "help me with an advertisement for my fashion brand based on past creatives that performed well"
+    }
+  },
+  {
+    "id": 28,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate a Ad creative based on brands that did well in the past creatives for my beverage brand campaign."
+    }
+  },
+    {
+    "id": 29,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Can you resize this image to a 16:9 aspect ratio?"
+    }
+  },
+    {
+    "id": 30,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Can you resize the uploaded image to IAB sizes?"
+    }
+  },
+  {
+    "id": 31,
+    "payload": {
+      "conversation_history": "User:Generate a Ad creative based on brands that did well in the past creatives for my beverage brand campaign;System: Beverage Brand Campaign Ad Generated",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "I want this in a 1:1 aspect ratio."
+    }
+  },
+    {
+    "id": 32,
+    "payload": {
+      "conversation_history": "user: Generate a media plan.....System: Media Plan Generated....",
+      "response": {
+        "follow_up": "Please use the button beside the Export IO Button found at the botton right of your screen to generate your insertion order(IO).",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Can you generate an IO for me?"
+    }
+  },
+    {
+    "id": 33,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate a campaign for a fashion brand"
+    }
+  },
+  {
+    "id": 34,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "make a campaign for a fashion brand"
+    }
+  },
+    {
+    "id": 35,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Create a media plan for a car brand For 10 days at a 5000 dollar budget"
+    }
+  },
+    {
+    "id": 36,
+    "payload": {
+      "conversation_history": "system: In order to create an insertion order, we must first generate a media plan. Would you like to generate a media plan?;  user:Campaign Performance and Insights for fashion brand that did well system:Campaign Performance....",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "yes"
+    }
+  },
+  {
+    "id": 37,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up":"Hello! How can I assist you today? If you have any questions about media, marketing, or specific industries, feel free to ask!",
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "hi"
+    }
+  },
+  {
+    "id": 38,
+    "payload": {
+      "conversation_history": "user: Show campaign performance and insights for fashion products.. system: Campaign Performance Report.....",
+      "response": {
+        "required_outcomes": [
+          1
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "Generate a media plan for fashion products."
+    }
+  },
+    {
+    "id": 39,
+    "payload": {
+      "conversation_history": "user: Generate a fresh ad creative for the car brand Mahesh.. system: Fresh Ad Creative for Mahesh Car Brand Generated.....",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "I want this in IAB sizes"
+    }
+  },
+    {
+    "id": 40,
+    "payload": {
+      "conversation_history": "user: Generate a fresh ad creative for the car brand Mahesh.. system: Fresh Ad Creative for Mahesh Car Brand Generated.....",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "I want this in native sizes"
+    }
+  },
+    {
+    "id": 41,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Generate an advertisement for related fashion products based on successful winter campaigns"
+    }
+  },
+  {
+    "id": 42,
+    "payload": {
+      "conversation_history": "user: Provide Creative Insights for top 10 creatives in entertainment brands system: The search context focused... The selected top 10 creatives... Creative Insights..",
+      "response": {
+        "required_outcomes": [
+          3, 5
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "how me the perfomrance for these"
+    }
+  },
+    {
+    "id": 43,
+    "payload": {
+      "conversation_history": "user: Generate an Ad Creative for a luxury beverage brand... System: Would you like me to generate a fresh creative for your luxury beverage brand or base it on past successful creatives?.",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "based on past"
+    }
+  },
+    {
+    "id": 44,
+    "payload": {
+      "conversation_history": "user:Show me the top 5 worst perfomring brand in the entertainent industry... System: Could you please specify the metrics you're interested in, such as clicks, conversion rate, or overall performance?.",
+      "response": {
+        "required_outcomes": [
+          3, 5
+        ],
+        "unrelated_query": false
+      },
+      "user_query": "by clicks"
+    }
+  },
+  {
+    "id": 45,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "For what product or industry would you like to generate an advertisement creative for?",
+        "required_outcomes": [
+         9
+        ],
+        "unrelated_query": false
+      },
+      "user_query": " Generate an Ad Creative"
+    }
+  },
+  {
+    "id": 46,
+    "payload": {
+      "conversation_history": "user:Generate an ad creative based on past campaigns that performed well for fashion products... system: Can you provide the specific fashion brand or type of product you'd like the ad creative to focus on?",
+      "response": {
+        "required_outcomes": [
+          9
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "im interested in shoes"
+    }
+  },
+  {
+    "id": 47,
+    "payload": {
+      "conversation_history": "user:Generate a fresh ad creative for..... system: Fashion Ad Creative for Millennials; user:Could I have it native sizes? system: Would you like to see this in specific native sizes, such as 1:1, 3:4, 4:3, 9:16, or 16:9? ",
+      "response": {
+        "required_outcomes": [
+          7
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "all of them"
+    }
+  },
+    {
+    "id": 48,
+    "payload": {
+      "conversation_history": "",
+      "response": {
+        "follow_up": "Could you please specify the industry or brand you are referring to for more tailored insights on underperforming campaigns?",
+        "required_outcomes": [
+          10
+        ],
+        "unrelated_query": true
+      },
+      "user_query": "Are there any campaigns that are underperforming and should be adjusted or paused?"
+    }
+  }
+]

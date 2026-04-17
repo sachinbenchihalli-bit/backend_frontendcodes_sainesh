@@ -1,0 +1,99 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--ev-colors-backgroundTertiary); /* Darker background */
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 80vw; /* Use viewport width instead of fixed pixels */
+  max-height: 90vh; /* Use viewport height */
+  margin: 0 auto; /* Center horizontally */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  overflow: hidden; /* Ensure content stays within bounds */
+}
+
+.modal-content img,
+.modal-content video {
+  max-width: 100%; /* Instead of width: 100% */
+  max-height: 70vh; /* Use viewport height instead of fixed pixels */
+  border-radius: 8px; 
+  object-fit: contain; /* 'contain' instead of 'cover' to show the entire image */
+  margin: 0 auto; /* Center the image */
+}
+
+.slider-info {
+  margin: 15px 0;
+  text-align: center;
+  font-family: Arial, sans-serif; 
+  color: var(--ev-colors-text); /* Using text color */
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Add gap between buttons */
+  margin: 20px 0; /* Remove horizontal margin to stay within container */
+  width: 100%; /* Ensure full width within container */
+  padding: 0 20px; /* Add padding instead of margin for spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.slider-buttons {
+  // background: var(--ev-colors-tertiary); /* Tertiary color for buttons */
+  padding: 12px 24px; /* Larger padding for bigger buttons */
+  border-radius: 8px; /* Slightly larger border radius */
+  border: 1px solid var(--ev-colors-borderColor); /* Fix border syntax */
+  cursor: pointer;
+  margin-bottom: 0; /* Remove bottom margin to prevent overflow */
+  transition: background 0.3s;
+  font-size: 16px; /* Slightly smaller font for better proportion */
+  min-width: 100px; /* Ensure consistent button width */
+  background: var(--ev-colors-backgroundSecondary); /* Add background color */
+  color: var(--ev-colors-text); /* Ensure text color */
+
+  &:hover:not(:disabled) {
+    background: var(--ev-colors-highlight); /* Highlight on hover */
+    color: var(--ev-colors-background); /* Contrast text color */
+  }
+}
+
+button:disabled {
+  background: #555; /* Darker background for disabled */
+  color: #999; /* Lighter text for disabled buttons */
+  cursor: not-allowed;
+}
+
+.close-button {
+  position: absolute;
+  padding: 8px; /* Reduce padding for icon */
+  top: 15px;
+  right: 15px;
+  background: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer;
+  color: var(--ev-colors-text); /* Text color for close button */
+  border-radius: 4px; /* Add slight border radius */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: var(--ev-colors-backgroundSecondary); /* Subtle background on hover */
+    opacity: 0.8; /* Slight opacity change on hover */
+  }
+}
